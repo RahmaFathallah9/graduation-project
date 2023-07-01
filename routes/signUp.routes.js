@@ -13,13 +13,15 @@ const bcrypt = require('bcrypt');
      if(errors.isEmpty()){
         let user =await userModel.findOne({email})
         if(user){
-           res.json({message:"email exists"})
+          res.json({message:"email exists"})
+         
      }
      else{
         bcrypt.hash(password,7,  async  function(err, hash) {
           // Store hash in your password DB.
             await userModel.insertMany({firstName,lastName,email,password:hash})
-            res.json({message:"sucsses"})   
+//res.json({message:"sucsses"})   
+         res.json(user._id)
         });
            
         }     
